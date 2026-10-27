@@ -6,17 +6,17 @@ import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shimmer/shimmer.dart';
 
-// --- NEW ENGINE IMPORTS ---
+
 import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
-// GLOBAL THEME CONTROLLER
+
 final ValueNotifier<ThemeMode> _themeNotifier = ValueNotifier(ThemeMode.dark);
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // 1. INIT THE NEW ENGINE
+  
   MediaKit.ensureInitialized();
   
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -66,7 +66,7 @@ class DmPlaysApp extends StatelessWidget {
   }
 }
 
-// --- SPLASH SCREEN ---
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -116,7 +116,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-// --- DATA MODEL ---
+
 class Channel {
   final String name;
   final String url;
@@ -125,7 +125,7 @@ class Channel {
   Channel({required this.name, required this.url, required this.group, this.logoUrl});
 }
 
-// --- MAIN NAVIGATION ---
+
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
 
@@ -242,7 +242,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   }
 }
 
-// --- HOME SCREEN ---
+
 class HomeScreen extends StatelessWidget {
   final Map<String, List<Channel>> groupedChannels;
   final List<Channel> featuredChannels;
@@ -402,7 +402,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// --- SEARCH SCREEN ---
+
 class SearchScreen extends StatefulWidget {
   final List<Channel> allChannels;
   const SearchScreen({super.key, required this.allChannels});
@@ -447,7 +447,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 }
 
-// --- PROFILE SCREEN ---
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
@@ -474,7 +474,7 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-// --- SETTINGS & ABOUT ---
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
   @override
@@ -491,7 +491,7 @@ class AboutDeveloperScreen extends StatelessWidget {
   }
 }
 
-// --- NEW VIDEO PLAYER SCREEN (Direct MediaKit Implementation) ---
+
 class VideoPlayerScreen extends StatefulWidget {
   final String url;
   final String channelName;
@@ -502,23 +502,23 @@ class VideoPlayerScreen extends StatefulWidget {
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  // 1. Define Player and Controller
+  
   late final Player player;
   late final VideoController controller;
 
   @override
   void initState() {
     super.initState();
-    // 2. Create the player
+    
     player = Player();
     controller = VideoController(player);
-    // 3. Start playing
+    
     player.open(Media(widget.url));
   }
 
   @override
   void dispose() {
-    // 4. Clean up
+    
     player.dispose();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
@@ -531,11 +531,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            // 5. The Video Widget
+            
             Center(
               child: Video(controller: controller),
             ),
-            // Back Button
+            
             Positioned(
               top: 10, left: 10, 
               child: IconButton(
@@ -550,7 +550,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 }
 
-// --- LOADING SKELETON ---
+
 class LoadingSkeleton extends StatelessWidget {
   const LoadingSkeleton({super.key});
   @override

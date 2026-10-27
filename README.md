@@ -1,16 +1,20 @@
-# dm_plays
+# DM Plays
 
-A new Flutter project.
+DM Plays is a Flutter streaming client with a catalogue organized from an M3U playlist. It groups channels by category, highlights featured and Indian channels, and provides search, playback, settings, and dark/light themes. Playback is handled with `media_kit`.
 
-## Getting Started
+## Run locally
 
-This project is a starting point for a Flutter application.
+Install the Flutter SDK with Dart 3.1 or newer, then run:
 
-A few resources to get you started if this is your first Flutter project:
+    flutter pub get
+    flutter run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The app fetches its playlist over the network. The playlist URL is defined in `lib/main.dart`; use sources that you are authorized to access.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project layout
+
+- `lib/main.dart`: app startup, channel catalogue, navigation, search, settings, and player
+- `assets/`: app artwork and bundled media assets
+- `android/`, `ios/`, `windows/`, `linux/`, and `macos/`: Flutter platform projects
+
+Platform playback support depends on the media libraries available for the selected Flutter target.
